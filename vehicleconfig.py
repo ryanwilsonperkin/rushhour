@@ -36,11 +36,13 @@ class VehicleConfig(object):
             raise ValueError('Invalid y {0}'.format(y))
 
         if orientation == 'H':
-            x_end = self.x
-            y_end = self.y + self.length
-        elif orientation == 'V':
+            self.orientation = orientation
             x_end = self.x + self.length
             y_end = self.y
+        elif orientation == 'V':
+            self.orientation = orientation
+            x_end = self.x
+            y_end = self.y + self.length
         else:
             raise ValueError('Invalid orientation {0}'.format(orientation))
 
