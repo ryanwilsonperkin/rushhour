@@ -1,11 +1,11 @@
 CAR_IDS = {'X', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'}
 TRUCK_IDS = {'O', 'P', 'Q', 'R'}
 
-class VehicleConfig(object):
+class Vehicle(object):
     """A configuration of a single vehicle."""
 
     def __init__(self, id, x, y, orientation):
-        """Create a new vehicle configuration.
+        """Create a new vehicle.
         
         Arguments:
             id: a valid car or truck id character
