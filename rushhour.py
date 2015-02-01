@@ -19,6 +19,9 @@ class RushHour(object):
         if len(self.vehicles) != len(self.vehicle_map.keys()):
             raise ValueError('Multiple vehicles with same id.')
 
+    def __eq__(self, other):
+        return self.vehicles == other.vehicles
+
     def __repr__(self):
         s = '-' * 8 + '\n'
         for line in self.get_board():
