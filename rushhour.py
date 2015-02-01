@@ -38,7 +38,11 @@ class RushHour(object):
         return not self.__eq__(other)
 
     def __repr__(self):
-        return "RushHour({0})".format(list(self.vehicles))
+        s = '-' * 8 + '\n'
+        for line in self.get_board():
+            s += '|{0}|\n'.format(''.join(line))
+        s += '-' * 8 + '\n'
+        return s
 
     def get_board(self):
         """Representation of the Rush Hour board as a 2D list of strings"""
