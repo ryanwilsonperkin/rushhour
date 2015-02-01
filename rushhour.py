@@ -89,6 +89,14 @@ class RushHour(object):
                     new_vehicle_map[v.id] = new_v
                     yield RushHour(new_vehicle_map)
 
+def load_file(rushhour_file):
+    vehicles = []
+    for line in rushhour_file:
+        line = line[:-1] if line.endswith('\n') else line
+        id, x, y, orientation = line
+        vehicles.append(Vehicle(id, int(x), int(y), orientation))
+    return RushHour(set(vehicles))
+
 def get_solutions_breadth_first(r, max_depth=25):
     """
     Yields solutions to given RushHour board using breadth first search.
