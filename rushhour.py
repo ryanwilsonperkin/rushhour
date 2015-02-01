@@ -1,3 +1,7 @@
+import vehicle
+
+GOAL_VEHICLE = vehicle.Vehicle('X', 4, 2, 'H')
+
 class RushHour(object):
     """A configuration of a single Rush Hour board."""
 
@@ -37,3 +41,6 @@ class RushHour(object):
                 for i in range(vehicle.length):
                     board[y+i][x] = vehicle.id
         return board
+
+    def solved(self):
+        return GOAL_VEHICLE in self.vehicles
