@@ -93,6 +93,6 @@ class TestVehicle(unittest.TestCase):
         v4 = vehicle.Vehicle('X', 0, 1, 'H')
         v5 = vehicle.Vehicle('X', 0, 0, 'V')
         self.assertNotEqual(v1, v2)
-        self.assertNotEqual(v1, v4)
+        self.assertNotEqual(v1, v3)
         self.assertNotEqual(v1, v4)
         self.assertNotEqual(v1, v5)
