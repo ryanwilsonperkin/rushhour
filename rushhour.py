@@ -5,8 +5,10 @@ class RushHour(object):
         """Create a new Rush Hour board.
         
         Arguments:
+            vehicles: A list of Vehicle objects with distinct ids.
 
         Exceptions:
+            ValueError: on multiple vehicles having same id
         """
         ids = [vehicle.id for vehicle in vehicles]
         uniq_ids = set(ids)
