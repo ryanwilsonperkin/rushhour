@@ -80,10 +80,10 @@ class RushHour(object):
                 if v.y - 1 >= 0 and board[v.y - 1][v.x] == ' ':
                     new_v = Vehicle(v.id, v.x, v.y - 1, v.orientation)
                     new_vehicle_map = self.vehicle_map.copy()
-                    new_vehicle_map[vehicle.id] = new_v
+                    new_vehicle_map[v.id] = new_v
                     yield RushHour(new_vehicle_map)
                 if v.y + v.length <= 5 and board[v.y + v.length][v.x] == ' ':
                     new_v = Vehicle(v.id, v.x, v.y + 1, v.orientation)
                     new_vehicle_map = self.vehicle_map.copy()
-                    new_vehicle_map[vehicle.id] = new_v
+                    new_vehicle_map[v.id] = new_v
                     yield RushHour(new_vehicle_map)
