@@ -80,3 +80,19 @@ class TestVehicle(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             vehicle.Vehicle('O', 0, 4, 'V')
+
+    def test_equality(self):
+        v1 = vehicle.Vehicle('X', 0, 0, 'H')
+        v2 = vehicle.Vehicle('X', 0, 0, 'H')
+        self.assertEqual(v1, v2)
+
+    def test_inequality(self):
+        v1 = vehicle.Vehicle('X', 0, 0, 'H')
+        v2 = vehicle.Vehicle('A', 0, 0, 'H')
+        v3 = vehicle.Vehicle('X', 1, 0, 'H')
+        v4 = vehicle.Vehicle('X', 0, 1, 'H')
+        v5 = vehicle.Vehicle('X', 0, 0, 'V')
+        self.assertNotEqual(v1, v2)
+        self.assertNotEqual(v1, v4)
+        self.assertNotEqual(v1, v4)
+        self.assertNotEqual(v1, v5)
