@@ -1,6 +1,6 @@
-import vehicle
+from vehicle import Vehicle
 
-GOAL_VEHICLE = vehicle.Vehicle('X', 4, 2, 'H')
+GOAL_VEHICLE = Vehicle('X', 4, 2, 'H')
 
 class RushHour(object):
     """A configuration of a single Rush Hour board."""
@@ -60,3 +60,30 @@ class RushHour(object):
     def solved(self):
         """Returns true if the board is in a solved state."""
         return GOAL_VEHICLE in self.vehicles
+
+    def moves(self):
+        """Return iterator of next possible moves."""
+        board = self.get_board()
+        for v in self.vehicles:
+            if v.orientation == 'H':
+                if v.x - 1 >= 0 and board[v.y][v.x - 1] == ' ':
+                    new_v = Vehicle(v.id, v.x - 1, v.y, v.orientation)
+                    new_vehicle_map = self.vehicle_map.copy()
+                    new_vehicle_map[v.id] = new_v
+                    yield RushHour(new_vehicle_map)
+                if v.x + v.length <= 5 and board[v.y][v.x + v.length] == ' ':
+                    new_v = Vehicle(v.id, v.x + v.length, v.y, v.orientation)
+                    new_vehicle_map = self.vehicle_map.copy()
+                    new_vehicle_map[v.id] = new_v
+                    yield RushHour(new_vehicle_map)
+            else:
+                if v.y - 1 >= 0 and board[v.y - 1][v.x] == ' ':
+                    new_v = Vehicle(v.id, v.x, v.y - 1, v.orientation)
+                    new_vehicle_map = self.vehicle_map.copy()
+                    new_vehicle_map[vehicle.id] = new_v
+                    yield RushHour(new_vehicle_map)
+                if v.y + v.length <= 5 and board[v.y + v.length][v.x] == ' ':
+                    new_v = Vehicle(v.id, v.x, v.y + v.length, v.orientation)
+                    new_vehicle_map = self.vehicle_map.copy()
+                    new_vehicle_map[vehicle.id] = new_v
+                    yield RushHour(new_vehicle_map)
