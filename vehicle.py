@@ -49,3 +49,5 @@ class Vehicle(object):
         if x_end > 5 or y_end > 5:
             raise ValueError('Invalid configuration')
 
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
