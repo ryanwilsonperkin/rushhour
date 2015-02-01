@@ -51,3 +51,7 @@ class Vehicle(object):
 
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
+
+    def __repr__(self):
+        return "Vehicle({0}, {1}, {2}, {3})".format(self.id, self.x, self.y,
+                                                    self.orientation)
