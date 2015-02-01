@@ -14,13 +14,10 @@ class RushHour(object):
         Exceptions:
             ValueError: on multiple vehicles having same id
         """
-        ids = [vehicle.id for vehicle in vehicles]
-        uniq_ids = set(ids)
-        if len(ids) != len(uniq_ids):
-            raise ValueError('Multiple vehicles with same id.')
-
         self.vehicles = vehicles
         self.vehicle_map = {vehicle.id : vehicle for vehicle in vehicles}
+        if len(self.vehicles) != len(self.vehicle_map.keys()):
+            raise ValueError('Multiple vehicles with same id.')
 
     def __repr__(self):
         s = '-' * 8 + '\n'
@@ -43,4 +40,5 @@ class RushHour(object):
         return board
 
     def solved(self):
+        """Returns true if the board is in a solved state."""
         return GOAL_VEHICLE in self.vehicles
