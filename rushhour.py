@@ -28,6 +28,9 @@ class RushHour(object):
         if len(self.vehicles) != len(self.vehicle_map.keys()):
             raise ValueError('Multiple vehicles with same id.')
 
+    def __hash__(self):
+        return hash(self.__repr__())
+
     def __eq__(self, other):
         return self.vehicles == other.vehicles
 
