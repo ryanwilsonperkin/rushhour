@@ -9,13 +9,22 @@ class RushHour(object):
         """Create a new Rush Hour board.
         
         Arguments:
-            vehicles: A list of Vehicle objects with distinct ids.
+            vehicles: either a set of Vehicle objects or a dictionary of
+                      mappings from id to Vehicle objects.
 
         Exceptions:
+            TypeError: on improper type of vehicles param
             ValueError: on multiple vehicles having same id
         """
-        self.vehicles = vehicles
-        self.vehicle_map = {vehicle.id : vehicle for vehicle in vehicles}
+        if type(vehicles) == set:
+            self.vehicles = vehicles
+            self.vehicle_map = {vehicle.id : vehicle for vehicle in vehicles}
+        elif type(vehicles) == dict:
+            self.vehicle_map = vehicles
+            self.vehicles = set(vehicles.values())
+        else:
+            raise TypeError('vehicles must be either list or dict')
+
         if len(self.vehicles) != len(self.vehicle_map.keys()):
             raise ValueError('Multiple vehicles with same id.')
 
