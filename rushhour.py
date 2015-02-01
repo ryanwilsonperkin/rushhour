@@ -31,6 +31,9 @@ class RushHour(object):
     def __eq__(self, other):
         return self.vehicles == other.vehicles
 
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
     def __repr__(self):
         return "RushHour({0})".format(list(self.vehicles))
 
