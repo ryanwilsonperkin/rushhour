@@ -62,7 +62,7 @@ class TestVehicle(unittest.TestCase):
         with self.assertRaises(ValueError):
             vehicle.Vehicle('X', 0, 0, 'x')
 
-    def test_create_bad_(self):
+    def test_create_bad_config(self):
         with self.assertRaises(ValueError):
             vehicle.Vehicle('X', 5, 5, 'H')
 
