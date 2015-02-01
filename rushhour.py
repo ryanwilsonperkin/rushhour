@@ -1,3 +1,4 @@
+from collections import deque
 from vehicle import Vehicle
 
 GOAL_VEHICLE = Vehicle('X', 4, 2, 'H')
@@ -87,3 +88,31 @@ class RushHour(object):
                     new_vehicle_map = self.vehicle_map.copy()
                     new_vehicle_map[v.id] = new_v
                     yield RushHour(new_vehicle_map)
+
+def get_solutions_breadth_first(r, max_depth=25):
+    """
+    Yields solutions to given RushHour board using breadth first search.
+    Yields nothing if no solutions are encountered within max_depth moves.
+
+    Arguments:
+        r: A RushHour board.
+
+    Keyword Arguments:
+        max_depth: Maximum depth to traverse in search (default=25)
+    """
+    queue = deque()
+    queue.appendleft((r, tuple()))
+
+    while len(queue) != 0:
+        board, path = queue.pop()
+        if len(path) + 1 >= max_depth:
+            break
+
+        if board.solved():
+            yield path + tuple([board])
+
+        if board in path:
+            continue
+
+        for move in board.moves():
+            queue.appendleft((move, path + tuple([board])))
