@@ -32,7 +32,12 @@ class RushHour(object):
 
     def get_board(self):
         """Representation of the Rush Hour board as a 2D list of strings"""
-        board = [[' ' for i in range(6)] for j in range(6)]
+        board = [[' ', ' ', ' ', ' ', ' ', ' '],
+                 [' ', ' ', ' ', ' ', ' ', ' '],
+                 [' ', ' ', ' ', ' ', ' ', ' '],
+                 [' ', ' ', ' ', ' ', ' ', ' '],
+                 [' ', ' ', ' ', ' ', ' ', ' '],
+                 [' ', ' ', ' ', ' ', ' ', ' ']]
         for vehicle in self.vehicles:
             x, y = vehicle.x, vehicle.y
             if vehicle.orientation == 'H':
