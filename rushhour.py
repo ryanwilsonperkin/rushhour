@@ -134,3 +134,19 @@ def get_solutions_breadth_first(r, max_depth=25):
     return {'visited': visited,
             'solutions': solutions,
             'depth_states': depth_states}
+
+def solution_steps(solution):
+    steps = []
+    for i in range(len(solution) - 1):
+        r1, r2 = solution[i], solution[i+1]
+        v1 = list(r1.vehicles - r2.vehicles)[0]
+        v2 = list(r2.vehicles - r1.vehicles)[0]
+        if v1.x < v2.x:
+            steps.append('{0}R'.format(v1.id))
+        elif v1.x > v2.x:
+            steps.append('{0}L'.format(v1.id))
+        elif v1.y < v2.y:
+            steps.append('{0}D'.format(v1.id))
+        elif v1.y > v2.y:
+            steps.append('{0}U'.format(v1.id))
+    return steps
