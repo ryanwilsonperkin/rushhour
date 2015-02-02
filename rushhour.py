@@ -128,8 +128,7 @@ def breadth_first_search(r, max_depth=25):
         if board.solved():
             solutions.add(new_path)
 
-        for move in board.moves():
-            queue.appendleft((move, new_path))
+        queue.extendleft((move, new_path) for move in board.moves())
 
     return {'visited': visited,
             'solutions': solutions,
