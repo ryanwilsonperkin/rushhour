@@ -8,13 +8,11 @@ class TestRushHour(unittest.TestCase):
         v = vehicle.Vehicle('X', 0, 0, 'H')
         r = rushhour.RushHour(set([v]))
         self.assertEqual(r.vehicles, set([v]))
-        self.assertEqual(r.vehicle_map, {v.id: v})
 
     def test_create_from_dict(self):
         v = vehicle.Vehicle('X', 0, 0, 'H')
         r = rushhour.RushHour({v.id: v})
         self.assertEqual(r.vehicles, set([v]))
-        self.assertEqual(r.vehicle_map, {v.id: v})
 
     def test_create_from_invalid(self):
         v = vehicle.Vehicle('X', 0, 0, 'H')

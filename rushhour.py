@@ -10,24 +10,9 @@ class RushHour(object):
         """Create a new Rush Hour board.
         
         Arguments:
-            vehicles: either a set of Vehicle objects or a dictionary of
-                      mappings from id to Vehicle objects.
-
-        Exceptions:
-            TypeError: on improper type of vehicles param
-            ValueError: on multiple vehicles having same id
+            vehicles: a set of Vehicle objects.
         """
-        if type(vehicles) == set:
-            self.vehicles = vehicles
-            self.vehicle_map = {vehicle.id : vehicle for vehicle in vehicles}
-        elif type(vehicles) == dict:
-            self.vehicle_map = vehicles
-            self.vehicles = set(vehicles.values())
-        else:
-            raise TypeError('vehicles must be either list or dict')
-
-        if len(self.vehicles) != len(self.vehicle_map.keys()):
-            raise ValueError('Multiple vehicles with same id.')
+        self.vehicles = vehicles
 
     def __hash__(self):
         return hash(self.__repr__())
@@ -69,25 +54,29 @@ class RushHour(object):
             if v.orientation == 'H':
                 if v.x - 1 >= 0 and board[v.y][v.x - 1] == ' ':
                     new_v = Vehicle(v.id, v.x - 1, v.y, v.orientation)
-                    new_vehicle_map = self.vehicle_map.copy()
-                    new_vehicle_map[v.id] = new_v
-                    yield RushHour(new_vehicle_map)
+                    new_vehicles = self.vehicles.copy()
+                    new_vehicles.remove(v)
+                    new_vehicles.add(new_v)
+                    yield RushHour(new_vehicles)
                 if v.x + v.length <= 5 and board[v.y][v.x + v.length] == ' ':
                     new_v = Vehicle(v.id, v.x + 1, v.y, v.orientation)
-                    new_vehicle_map = self.vehicle_map.copy()
-                    new_vehicle_map[v.id] = new_v
-                    yield RushHour(new_vehicle_map)
+                    new_vehicles = self.vehicles.copy()
+                    new_vehicles.remove(v)
+                    new_vehicles.add(new_v)
+                    yield RushHour(new_vehicles)
             else:
                 if v.y - 1 >= 0 and board[v.y - 1][v.x] == ' ':
                     new_v = Vehicle(v.id, v.x, v.y - 1, v.orientation)
-                    new_vehicle_map = self.vehicle_map.copy()
-                    new_vehicle_map[v.id] = new_v
-                    yield RushHour(new_vehicle_map)
+                    new_vehicles = self.vehicles.copy()
+                    new_vehicles.remove(v)
+                    new_vehicles.add(new_v)
+                    yield RushHour(new_vehicles)
                 if v.y + v.length <= 5 and board[v.y + v.length][v.x] == ' ':
                     new_v = Vehicle(v.id, v.x, v.y + 1, v.orientation)
-                    new_vehicle_map = self.vehicle_map.copy()
-                    new_vehicle_map[v.id] = new_v
-                    yield RushHour(new_vehicle_map)
+                    new_vehicles = self.vehicles.copy()
+                    new_vehicles.remove(v)
+                    new_vehicles.add(new_v)
+                    yield RushHour(new_vehicles)
 
 def load_file(rushhour_file):
     vehicles = []
