@@ -136,6 +136,7 @@ def breadth_first_search(r, max_depth=25):
             'depth_states': depth_states}
 
 def solution_steps(solution):
+    """Generate list of steps from a solution path."""
     steps = []
     for i in range(len(solution) - 1):
         r1, r2 = solution[i], solution[i+1]
