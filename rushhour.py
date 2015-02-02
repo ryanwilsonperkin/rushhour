@@ -106,7 +106,7 @@ def breadth_first_search(r, max_depth=25):
         max_depth: Maximum depth to traverse in search (default=25)
     """
     visited = set()
-    solutions = set()
+    solutions = list()
     depth_states = dict()
 
     queue = deque()
@@ -126,7 +126,7 @@ def breadth_first_search(r, max_depth=25):
             visited.add(board)
 
         if board.solved():
-            solutions.add(new_path)
+            solutions.append(new_path)
 
         queue.extendleft((move, new_path) for move in board.moves())
 
