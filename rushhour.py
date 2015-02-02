@@ -91,7 +91,7 @@ def load_file(rushhour_file):
         vehicles.append(Vehicle(id, int(x), int(y), orientation))
     return RushHour(set(vehicles))
 
-def get_solutions_breadth_first(r, max_depth=25):
+def breadth_first_search(r, max_depth=25):
     """
     Find solutions to given RushHour board using breadth first search.
     Returns a dictionary with named fields:
