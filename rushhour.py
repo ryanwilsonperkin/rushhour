@@ -93,8 +93,11 @@ def load_file(rushhour_file):
 
 def get_solutions_breadth_first(r, max_depth=25):
     """
-    Yields solutions to given RushHour board using breadth first search.
-    Yields nothing if no solutions are encountered within max_depth moves.
+    Find solutions to given RushHour board using breadth first search.
+    Returns a dictionary with named fields:
+        visited: the number of configurations visited in the search
+        solutions: paths to the goal state
+        depth_states: the number of states visited at each depth
 
     Arguments:
         r: A RushHour board.
