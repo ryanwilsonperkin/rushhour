@@ -110,11 +110,11 @@ def get_solutions_breadth_first(r, max_depth=25):
         if len(path) + 1 >= max_depth:
             break
 
-        if board.solved():
-            yield path + tuple([board])
-
         if board in path:
             continue
+
+        if board.solved():
+            yield path + tuple([board])
 
         for move in board.moves():
             queue.appendleft((move, path + tuple([board])))
