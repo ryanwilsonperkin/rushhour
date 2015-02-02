@@ -1,3 +1,4 @@
+import sys
 from collections import deque
 from vehicle import Vehicle
 
@@ -150,3 +151,16 @@ def solution_steps(solution):
         elif v1.y > v2.y:
             steps.append('{0}U'.format(v1.id))
     return steps
+
+if __name__ == '__main__':
+    filename = sys.argv[1]
+    with open(filename) as rushhour_file:
+        rushhour = load_file(rushhour_file)
+
+    results = breadth_first_search(rushhour, max_depth=100)
+
+    print '{0} Solutions found'.format(len(results['solutions']))
+    for solution in results['solutions']:
+        print 'Solution: {0}'.format(', '.join(solution_steps(solution)))
+
+    print '{0} Nodes visited'.format(len(results['visited']))
