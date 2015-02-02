@@ -103,6 +103,7 @@ def get_solutions_breadth_first(r, max_depth=25):
         max_depth: Maximum depth to traverse in search (default=25)
     """
     queue = deque()
+    visited = set()
     queue.appendleft((r, tuple()))
 
     while len(queue) != 0:
@@ -110,8 +111,10 @@ def get_solutions_breadth_first(r, max_depth=25):
         if len(path) + 1 >= max_depth:
             break
 
-        if board in path:
+        if board in visited:
             continue
+        else:
+            visited.add(board)
 
         if board.solved():
             yield path + tuple([board])
