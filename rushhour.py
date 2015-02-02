@@ -102,13 +102,19 @@ def get_solutions_breadth_first(r, max_depth=25):
     Keyword Arguments:
         max_depth: Maximum depth to traverse in search (default=25)
     """
-    queue = deque()
     visited = set()
-    queue.appendleft((r, tuple()))
+    solutions = set()
+    depth_states = dict()
 
+    queue = deque()
+    queue.appendleft((r, tuple()))
     while len(queue) != 0:
         board, path = queue.pop()
-        if len(path) + 1 >= max_depth:
+        new_path = path + tuple([board])
+
+        depth_states[len(new_path)] = depth_states.get(len(new_path), 0) + 1
+
+        if len(new_path) >= max_depth:
             break
 
         if board in visited:
@@ -117,7 +123,11 @@ def get_solutions_breadth_first(r, max_depth=25):
             visited.add(board)
 
         if board.solved():
-            yield path + tuple([board])
+            solutions.add(new_path)
 
         for move in board.moves():
-            queue.appendleft((move, path + tuple([board])))
+            queue.appendleft((move, new_path))
+
+    return {'visited': visited,
+            'solutions': solutions,
+            'depth_states': depth_states}
