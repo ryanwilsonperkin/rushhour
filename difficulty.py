@@ -22,4 +22,4 @@ if __name__ == '__main__':
     elif shortest_solution > 50 or num_solutions < 20:
         print 'Hard'
     else:
-        print 'Medium'
+        print 'Moderate'

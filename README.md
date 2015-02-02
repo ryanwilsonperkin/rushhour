@@ -31,7 +31,7 @@ Determining Difficulty
 
 In addition to the `rushhour.py` script, there is a `difficulty.py` script.
 The interface to this script is the same as the former, it still takes a path
-to a problem file, but this script responds with __Easy__, __Medium__, or
+to a problem file, but this script responds with __Easy__, __Moderate__, or
 __Hard__, depending on the difficulty of the game. Additionally, if the game
 cannot be solved, the script responds with __Impossible__.
 
